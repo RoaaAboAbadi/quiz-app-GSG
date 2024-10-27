@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/a2b3ab3d36.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <!-- <div class="child-container"> -->
+        <div class="content" id="content">
+            <h2>Quizard</h2>
+            <p>"Welcome to<span> Quizard !</span> Get ready to challenge yourself and enjoy the game!"</p>
+        </div>
+        <div class="category-selection">
+            <p id="choose-category" class="choose-category">Choose Category</p>
+            <div class="category-buttons" id="category-buttons">
+                <button data-category="history">History</button>
+                <button data-category="sceince">Sceince</button>
+                <button data-category="geography">Geography</button>
+            </div>
+        </div>
+        <div class="img-container">
+            <img src="./images/treasure2.png">
+        </div>
+        <button class="btn" id="btn">Start Playing</button>
+    </div>
+    <!-- </div> -->
+    <div class="con" id="con">
+        <div class="question-container">
+
+            <div class="content-question">
+                <h4>Question <span class="number-of-question" id="number-of-question">1</span> out of 7</h4>
+                <p class="the-question" id="the-question">"What is the largest country in the world by area?</p>
+            </div>
+            <div class="options">
+                <button class="option1" id="option1">Canada</button>
+                <button class="option2" id="option2">China</button>
+                <button class="option3" id="option3">Russia</button>
+                <button class="option4" id="option4">United States</button>
+            </div>
+            <div class="perant-child">
+                <button class="next" id="next">Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="score-page" id="score-page">
+        <div class="content-score" id="content-score"></div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
