@@ -1,4 +1,4 @@
-import { qustions } from "./qustions.js";
+import { questions } from "./qustions.js";
 
 const btn = document.getElementById("btn");
 const container = document.getElementById("container");
@@ -10,6 +10,7 @@ const next = document.getElementById("next");
 const scorePage = document.getElementById("score-page");
 const contentScore = document.getElementById("content-score");
 const categoryButtons = document.querySelectorAll(".category-buttons > button");
+// const signUpIcon = document.getElementById("icon");
 
 let selectedCategory = null;
 let currentIndex = 0;
@@ -17,45 +18,75 @@ let score = 0;
 let filteredQuestions = [];
 let currentAnswer = null;
 
+
+
+window.onload = function () {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+        window.location.href = "signIn.html"
+        console.log("1111111111");
+        // signUpIcon.style.display = "block";
+    } else {
+        // signUpIcon.style.display = "none"; 
+        startGame();
+        console.log("start playingggg");
+
+    }
+};
+
+
+
+// signUpIcon.addEventListener("click", () => {
+//     window.location.href = "signIn.html"; 
+// });
+
+
 btn.addEventListener("click", () => {
-    container.style.display = "none";
-    con.style.display = "flex";
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+        // container.style.display = "none";
+        // con.style.display = "flex";
+        // console.log("5555555555555555");
+        window.location.href = "signIn.html";
+    } else {
+        container.style.display = "none";
+        con.style.display = "flex";
+        startGame();
+    }
 });
 
-// Handling category selection and starting the quiz with filtered questions
-categoryButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        selectedCategory = button.getAttribute("data-category");
-        // console.log(selectedCategory, "selectedCategory", button, "button");
 
-        // Filtering questions by the selected category
-        filteredQuestions = qustions.filter(q => q.category === selectedCategory);
-        console.log(filteredQuestions, "filteredQuestions");
+const startGame = () => {
 
-        if (filteredQuestions.length > 0) {
-            startQuiz();
-        } else {
-            alert("No questions available for this category.");
-        }
+    categoryButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            selectedCategory = button.getAttribute("data-category");
+
+            filteredQuestions = questions.filter(q => q.category === selectedCategory);
+
+            if (filteredQuestions.length > 0) {
+                startQuiz();
+            } else {
+                alert("No questions available for this category.");
+            }
+        });
     });
-});
+};
 
-// Starting the quiz with the first question
 const startQuiz = () => {
     currentIndex = 0;
     score = 0;
     displayQuestion();
 };
 
-// Displaying the current question and options
+
 const displayQuestion = () => {
     currentAnswer = null;
     clearOptionsSelection();
 
     if (currentIndex < filteredQuestions.length) {
-        console.log(currentIndex, "currentIndex", filteredQuestions.length, "filteredQuestions.length");
         const currentQuestion = filteredQuestions[currentIndex];
-        theQuestion.innerHTML = currentQuestion.qustion;
+        theQuestion.innerHTML = currentQuestion.question;
 
         options.forEach((option, index) => {
             option.innerHTML = currentQuestion.options[index];
@@ -67,11 +98,11 @@ const displayQuestion = () => {
     }
 };
 
-// Checking the answer and moving to the next question
 const changeQuestion = () => {
     if (currentAnswer === null) return;
 
     const currentQuestion = filteredQuestions[currentIndex];
+    console.log('currentQuestion=-', currentQuestion)
     if (currentQuestion.answer === currentAnswer) {
         score++;
     }
@@ -80,12 +111,11 @@ const changeQuestion = () => {
     displayQuestion();
 };
 
-// Clearing the option selection
 const clearOptionsSelection = () => {
     options.forEach(option => option.classList.remove("colored"));
 };
 
-// Click event on the option to select the answer
+
 options.forEach(option => {
     option.addEventListener("click", (event) => {
         clearOptionsSelection();
@@ -94,12 +124,12 @@ options.forEach(option => {
     });
 });
 
-// Displaying the final score page
+
 const showScorePage = () => {
     con.style.display = "none";
     scorePage.style.display = "flex";
 
-    // Clearing previous score display content
+
     contentScore.innerHTML = "";
 
     let imgScoreElement = document.createElement("img");
@@ -129,14 +159,7 @@ const showScorePage = () => {
     finalScoreElement.textContent = score;
 };
 
-// Moving to the next question when clicking the "next" button
 next.addEventListener("click", () => {
     changeQuestion();
     clearOptionsSelection();
 });
-
-// Loading the saved score when the page loads
-// window.onload = () => {
-//     const savedScore = localStorage.getItem("score");
-//     console.log(savedScore);
-// };

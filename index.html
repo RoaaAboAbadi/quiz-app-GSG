@@ -8,16 +8,15 @@
     <title>Quiz App</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://kit.fontawesome.com/a2b3ab3d36.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
-
+    <!-- <i class="fa-solid fa-user-plus icon" id="icon"></i> -->
     <div class="container" id="container">
-        <!-- <div class="child-container"> -->
         <div class="content" id="content">
+
             <h2>Quizard</h2>
-            <p>"Welcome to<span> Quizard !</span> Get ready to challenge yourself and enjoy the game!"</p>
+            <p>"Welcome to <span>Quizard!</span> Get ready to challenge yourself and enjoy the game!"</p>
         </div>
         <div class="category-selection">
             <p id="choose-category" class="choose-category">Choose Category</p>
@@ -28,14 +27,13 @@
             </div>
         </div>
         <div class="img-container">
-            <img src="./images/treasure2.png">
+            <img src="./images/treasure2.png" alt="Treasure Image">
         </div>
         <button class="btn" id="btn">Start Playing</button>
     </div>
-    <!-- </div> -->
+
     <div class="con" id="con">
         <div class="question-container">
-
             <div class="content-question">
                 <h4>Question <span class="number-of-question" id="number-of-question">1</span> out of 7</h4>
                 <p class="the-question" id="the-question">"What is the largest country in the world by area?</p>
@@ -51,9 +49,11 @@
             </div>
         </div>
     </div>
-    <div class="score-page" id="score-page">
+
+    <div class="score-page" id="score-page" style="display: none;">
         <div class="content-score" id="content-score"></div>
     </div>
+
     <script type="module" src="./js/main.js"></script>
 </body>
 

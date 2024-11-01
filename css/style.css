@@ -2,6 +2,24 @@ body {
   padding: 0;
   margin: 0;
   background-color: #45437a;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 40vh;
+}
+.icon {
+  position: absolute;
+  font-size: 30px;
+  right: 20px;
+  top: 20px;
+  color: #41e5ed;
+  cursor: pointer;
 }
 .container {
   border: 1px solid white;
